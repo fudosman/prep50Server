@@ -1,10 +1,14 @@
 const express = require("express");
 const asyncHandler = require('express-async-handler');
+const cors = require('cors'); // Import cors package
 const treblle = require("@treblle/express");
 const { TRB_API_KEY, TRB_PROJ_ID } = require("./configs").env;
 const { handler, error404, homePageError } = require('./errors');
 const order = require('./routes/order.route');
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 //let us call some inbuilt express wares
 app.use(
