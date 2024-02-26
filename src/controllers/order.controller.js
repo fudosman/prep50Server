@@ -20,7 +20,16 @@ const orderController = {
 
   async getOrders(req, res) {
     try {
-      const orders = await Order.find({}).sort({ createdAt: -1 });
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+
+      const skip = (page - 1) * limit;
+
+      const orders = await Order.find({})
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit);
+
       return res.status(StatusCodes.OK).json({
         success: true,
         data: orders
