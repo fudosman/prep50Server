@@ -20,7 +20,7 @@ const orderController = {
 
   async getOrders(req, res) {
     try {
-      const orders = await Order.find({});
+      const orders = await Order.find({}).sort({ createdAt: -1 });
       return res.status(StatusCodes.OK).json({
         success: true,
         data: orders
