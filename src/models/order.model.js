@@ -20,14 +20,7 @@ const orderSchema = new Schema({
   },
   phoneNumber: {
     type: String,
-    required: true,
-    trim: true,
-    validate: {
-      validator: function (value) {
-        return /^\d{11}$/.test(value);
-      },
-      message: props => `${props.value} is not a valid phone number!`
-    }
+    required: true
   },
   address: {
     type: String,
